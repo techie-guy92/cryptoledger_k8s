@@ -25,9 +25,6 @@ spec:
             name: cryptoledger-config
         - secretRef:
             name: cryptoledger-secrets
-        env:
-        - name: DB_HOST
-          value: postgres
         volumeMounts:
         - name: media
           mountPath: /app/media
@@ -49,3 +46,4 @@ spec:
   - port: 8003
     targetPort: 8003
   type: NodePort
+  
