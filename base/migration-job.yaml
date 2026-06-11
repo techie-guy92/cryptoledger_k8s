@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cryptoledger-migrate
+  namespace: cryptoledger
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: migrate
+        image: 192.168.122.1:5000/cryptoledger:prod
+        command: ["python", "manage.py", "migrate"]
+        envFrom:
+        - configMapRef:
+            name: cryptoledger-config
+        - secretRef:
+            name: cryptoledger-secrets
+        env:
+        - name: DB_HOST
+          value: postgres
