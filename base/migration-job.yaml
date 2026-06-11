@@ -18,4 +18,4 @@ spec:
             name: cryptoledger-secrets
         env:
         - name: DB_HOST
-          value: postgres
+          value: postgres.cryptoledger.svc.cluster.local
