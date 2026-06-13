@@ -11,7 +11,7 @@ data:
   DB_NAME: "crypto_ledger"
   # DB_HOST: "postgres.cryptoledger.svc.cluster.local"
   # DB_HOST: "10.42.2.72"
-  DB_HOST: "postgres"
+  DB_HOST: "postgres-clusterip"
   DB_PORT: "5432"
   EMAIL_HOST: "smtp.gmail.com"
   EMAIL_PORT: "587"
