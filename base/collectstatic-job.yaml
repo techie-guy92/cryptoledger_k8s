@@ -10,7 +10,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: collectstatic
-        image: 192.168.122.1:5000/cryptoledger:prod
+        image: 192.168.122.1:5000/crypto:prod
         command: ["python", "manage.py", "collectstatic", "--noinput"]
         envFrom:
         - configMapRef:

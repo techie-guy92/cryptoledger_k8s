@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: 192.168.122.1:5000/cryptoledger:prod
+        image: 192.168.122.1:5000/crypto:prod
         ports:
         - containerPort: 8003
         resources:
