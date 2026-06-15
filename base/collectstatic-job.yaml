@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: crypto-collectstatic
+  namespace: crypto
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: collectstatic
+        image: 192.168.122.1:5000/cryptoledger:prod
+        command: ["python", "manage.py", "collectstatic", "--noinput"]
+        envFrom:
+        - configMapRef:
+            name: crypto-config
+        - secretRef:
+            name: crypto-secrets
