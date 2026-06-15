@@ -4,8 +4,10 @@ metadata:
   name: crypto-media-pvc
   namespace: crypto
 spec:
+  storageClassName: local-path
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
+      

@@ -16,7 +16,7 @@ data:
   EMAIL_PORT: "587"
   EMAIL_USE_TLS: "True"
   ALLOWED_HOSTS: "localhost,127.0.0.1,crypto.local"
-  ALLOWED_HOSTS: "localhost,127.0.0.1,crypto.local,192.168.122.43,192.168.122.44,192.168.122.45,192.168.122.1"
+  # ALLOWED_HOSTS: "localhost,127.0.0.1,crypto.local,192.168.122.43,192.168.122.44,192.168.122.45,192.168.122.1"
   # CSRF_TRUSTED_ORIGINS: "http://localhost:8003,http://127.0.0.1:8003,http://crypto.local:8003,http://192.168.122.43:8003,http://crypto.local,http://crypto.local:80"
   CSRF_TRUSTED_ORIGINS: "http://localhost:8003,http://127.0.0.1:8003,http://crypto.local"
   FRONTEND_DOMAIN: "http://crypto.local"
