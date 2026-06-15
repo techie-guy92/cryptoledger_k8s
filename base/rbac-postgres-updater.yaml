@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: postgres-ip-updater
-  namespace: cryptoledger
+  namespace: crypto
 rules:
 - apiGroups: [""]
   resources: ["pods"]
@@ -18,17 +18,17 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: postgres-ip-updater
-  namespace: cryptoledger
+  namespace: crypto
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: postgres-ip-updater
-  namespace: cryptoledger
+  namespace: crypto
 subjects:
 - kind: ServiceAccount
   name: postgres-ip-updater
-  namespace: cryptoledger
+  namespace: crypto
 roleRef:
   kind: Role
   name: postgres-ip-updater

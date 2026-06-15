@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: cryptoledger-ingress
-  namespace: cryptoledger
+  name: crypto-ingress
+  namespace: crypto
   annotations:
     kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/router.entrypoints: web
@@ -16,7 +16,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: cryptoledger-web
+            name: crypto-web
             port:
               number: 8003
               

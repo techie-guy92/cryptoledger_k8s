@@ -1,21 +1,21 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cryptoledger-config
-  namespace: cryptoledger
+  name: crypto-config
+  namespace: crypto
 data:
   PROJECT_NAME: "crypto"
   DEBUG: "False"
   DJANGO_SETTINGS_MODULE: "config.settings"
   ENGINE_NAME: "django.db.backends.postgresql"
   DB_NAME: "crypto_ledger"
-  # DB_HOST: "postgres.cryptoledger.svc.cluster.local"
+  # DB_HOST: "postgres.crypto.svc.cluster.local"
   DB_HOST: "postgres"
   DB_PORT: "5432"
   EMAIL_HOST: "smtp.gmail.com"
   EMAIL_PORT: "587"
   EMAIL_USE_TLS: "True"
-  ALLOWED_HOSTS: "localhost,127.0.0.1,crypto.local,cryptoledger.local,192.168.122.43,192.168.122.44,192.168.122.45,192.168.122.1,10.43.248.22"
+  ALLOWED_HOSTS: "localhost,127.0.0.1,crypto.local,crypto.local,192.168.122.43,192.168.122.44,192.168.122.45,192.168.122.1,10.43.248.22"
   CSRF_TRUSTED_ORIGINS: "https://crypto.local:7443,https://192.168.122.43:7443,http://localhost:8003,http://127.0.0.1:8003,http://crypto.local:8003,http://192.168.122.43:8003,http://192.168.122.43:32708,http://192.168.122.44:32708,http://192.168.122.45:32708,http://crypto.local,http://crypto.local:80"
   FRONTEND_DOMAIN: "crypto.local:7443"
   DEFAULT_PORT: "8003"

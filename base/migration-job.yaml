@@ -1,12 +1,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: cryptoledger-migrate
-  namespace: cryptoledger
+  name: crypto-migrate
+  namespace: crypto
 spec:
   template:
     spec:
-      hostNetwork: true
+      # hostNetwork: true
       restartPolicy: Never
       containers:
       - name: migrate
@@ -14,6 +14,6 @@ spec:
         command: ["python", "manage.py", "migrate"]
         envFrom:
         - configMapRef:
-            name: cryptoledger-config
+            name: crypto-config
         - secretRef:
-            name: cryptoledger-secrets
+            name: crypto-secrets

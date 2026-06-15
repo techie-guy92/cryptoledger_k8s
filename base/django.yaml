@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cryptoledger-web
-  namespace: cryptoledger
+  name: crypto-web
+  namespace: crypto
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: cryptoledger
+      app: crypto
       tier: web
   template:
     metadata:
       labels:
-        app: cryptoledger
+        app: crypto
         tier: web
     spec:
       containers:
@@ -29,28 +29,28 @@ spec:
             cpu: "500m"
         envFrom:
         - configMapRef:
-            name: cryptoledger-config
+            name: crypto-config
         - secretRef:
-            name: cryptoledger-secrets
+            name: crypto-secrets
         volumeMounts:
         - name: media
           mountPath: /app/media
       volumes:
       - name: media
         persistentVolumeClaim:
-          claimName: cryptoledger-media-pvc
+          claimName: crypto-media-pvc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: cryptoledger-web
-  namespace: cryptoledger
+  name: crypto-web
+  namespace: crypto
 spec:
   selector:
-    app: cryptoledger
+    app: crypto
     tier: web
   ports:
   - port: 8003
     targetPort: 8003
-  type: NodePort
+  type: ClusterIP
   
