@@ -3,4 +3,4 @@ secrets/
 *.key
 *.pem
 .env
-README.md
+coingecko_utils.txt
