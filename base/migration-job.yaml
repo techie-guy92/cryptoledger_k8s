@@ -4,6 +4,7 @@ metadata:
   name: crypto-migrate
   namespace: crypto
 spec:
+  backoffLimit: 3
   template:
     spec:
       # hostNetwork: true

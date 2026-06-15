@@ -21,7 +21,6 @@ spec:
   selector:
     matchLabels:
       app: postgres
-  backoffLimit: 3
   template:
     metadata:
       labels:
