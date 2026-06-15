@@ -9,7 +9,6 @@ spec:
   ports:
   - port: 5432
     targetPort: 5432
-  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -22,6 +21,7 @@ spec:
   selector:
     matchLabels:
       app: postgres
+  backoffLimit: 3
   template:
     metadata:
       labels:
