@@ -47,14 +47,16 @@ spec:
             port: 8003
           failureThreshold: 30
           periodSeconds: 10
+          timeoutSeconds: 2
 
         readinessProbe:
           httpGet:
             path: /health/ready/
             port: 8003
-          initialDelaySeconds: 10
+          initialDelaySeconds: 5
           periodSeconds: 5
           timeoutSeconds: 2
+          successThreshold: 1
           failureThreshold: 3
 
         livenessProbe:
