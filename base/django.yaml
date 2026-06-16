@@ -21,8 +21,8 @@ spec:
           # preferredDuringSchedulingIgnoredDuringExecution:
           # - weight: 100
           #   podAffinityTerm:
-              labelSelector:
-                matchExpressions:
+          - labelSelector:
+              matchExpressions:
                 - key: app
                   operator: In
                   values:
