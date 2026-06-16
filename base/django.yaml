@@ -43,14 +43,14 @@ spec:
 
         startupProbe:
           httpGet:
-            path: /health/
+            path: /health/live/
             port: 8003
           failureThreshold: 30
           periodSeconds: 10
 
         readinessProbe:
           httpGet:
-            path: /health/
+            path: /health/ready/
             port: 8003
           initialDelaySeconds: 10
           periodSeconds: 5
@@ -59,9 +59,8 @@ spec:
 
         livenessProbe:
           httpGet:
-            path: /health/
+            path: /health/live/
             port: 8003
-          # initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 2
           failureThreshold: 3
