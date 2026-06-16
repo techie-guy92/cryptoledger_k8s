@@ -15,6 +15,18 @@ spec:
         app: crypto
         tier: web
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - crypto
+              topologyKey: kubernetes.io/hostname
       containers:
       - name: web
         image: 192.168.122.1:5000/crypto:prod
@@ -53,4 +65,3 @@ spec:
   - port: 8003
     targetPort: 8003
   type: ClusterIP
-  
