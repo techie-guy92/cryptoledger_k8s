@@ -26,6 +26,10 @@ spec:
                   operator: In
                   values:
                   - crypto
+                - key: tier
+                  operator: In
+                  values:
+                  - web
               topologyKey: kubernetes.io/hostname
       containers:
       - name: web
