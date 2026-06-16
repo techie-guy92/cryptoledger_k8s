@@ -23,15 +23,15 @@ spec:
           #   podAffinityTerm:
           - labelSelector:
               matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - crypto
-                - key: tier
-                  operator: In
-                  values:
-                  - web
-              topologyKey: kubernetes.io/hostname
+              - key: app
+                operator: In
+                values:
+                - crypto
+              - key: tier
+                operator: In
+                values:
+                - web
+            topologyKey: kubernetes.io/hostname
       containers:
       - name: web
         image: 192.168.122.1:5000/crypto:prod
