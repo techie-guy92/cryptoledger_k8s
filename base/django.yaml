@@ -31,7 +31,7 @@ spec:
                   operator: In
                   values:
                   - web
-            topologyKey: kubernetes.io/hostname
+              topologyKey: kubernetes.io/hostname
       containers:
       - name: web
         image: 192.168.122.1:5000/crypto:prod
