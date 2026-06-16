@@ -37,6 +37,30 @@ spec:
         image: 192.168.122.1:5000/crypto:prod
         ports:
         - containerPort: 8003
+        startupProbe:
+          httpGet:
+            path: /health/
+            port: 8003
+          failureThreshold: 30
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /health/
+            port: 8003
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 2
+          failureThreshold: 3
+
+        livenessProbe:
+          httpGet:
+            path: /health/
+            port: 8003
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 3
         resources:
           requests:
             memory: "256Mi"
