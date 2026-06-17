@@ -1,6 +1,0 @@
-startupProbe:
-  httpGet:
-    path: /health/
-    port: 8003
-  failureThreshold: 30
-  periodSeconds: 10

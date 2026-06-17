@@ -4,3 +4,4 @@ secrets/
 *.pem
 .env
 coingecko_utils.txt
+tutorial/
