@@ -68,7 +68,6 @@ spec:
             httpHeaders:
             - name: Host
               value: crypto.local
-          initialDelaySeconds: 5
           periodSeconds: 5
           timeoutSeconds: 2
           successThreshold: 1
