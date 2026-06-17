@@ -38,6 +38,7 @@ spec:
       containers:
       - name: web
         image: 192.168.122.1:5000/crypto:prod
+        imagePullPolicy: Always
         ports:
         - containerPort: 8003
 
