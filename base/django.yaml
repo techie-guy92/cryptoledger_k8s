@@ -45,15 +45,15 @@ spec:
 
       containers:
       - name: web
-        image: 192.168.122.1:5000/crypto:prod
+        image: 192.168.122.1:5000/crypto:v1.2.0
         imagePullPolicy: Always
         ports:
-        - containerPort: 8003
+        - containerPort: 8000
 
         startupProbe:
           httpGet:
             path: /health/live/
-            port: 8003
+            port: 8000
             httpHeaders:
             - name: Host
               value: crypto.local
@@ -64,7 +64,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /health/ready/
-            port: 8003
+            port: 8000
             httpHeaders:
             - name: Host
               value: crypto.local
@@ -76,7 +76,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /health/live/
-            port: 8003
+            port: 8000
             httpHeaders:
             - name: Host
               value: crypto.local
@@ -116,6 +116,6 @@ spec:
     app: crypto
     tier: web
   ports:
-  - port: 8003
-    targetPort: 8003
+  - port: 8000
+    targetPort: 8000
   type: ClusterIP

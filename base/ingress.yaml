@@ -18,5 +18,5 @@ spec:
           service:
             name: crypto-web
             port:
-              number: 8003
+              number: 8000
               
