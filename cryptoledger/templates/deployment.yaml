@@ -43,6 +43,9 @@ spec:
           httpGet:
             path: /health/live/
             port: {{ .Values.service.port }}
+            httpHeaders:
+            - name: Host
+              value: {{ .Values.ingress.host }}
           failureThreshold: 30
           periodSeconds: 10
           timeoutSeconds: 2
@@ -50,6 +53,9 @@ spec:
           httpGet:
             path: /health/ready/
             port: {{ .Values.service.port }}
+            httpHeaders:
+            - name: Host
+              value: {{ .Values.ingress.host }}
           periodSeconds: 5
           timeoutSeconds: 2
           successThreshold: 1
@@ -58,6 +64,9 @@ spec:
           httpGet:
             path: /health/live/
             port: {{ .Values.service.port }}
+            httpHeaders:
+            - name: Host
+              value: {{ .Values.ingress.host }}
           periodSeconds: 10
           timeoutSeconds: 2
           failureThreshold: 3
