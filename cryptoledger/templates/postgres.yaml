@@ -1,8 +1,11 @@
+{{- if .Values.postgres.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
   name: postgres
-  namespace: crypto
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "cryptoledger.labels" . | nindent 4 }}
 spec:
   selector:
     app: postgres
@@ -15,7 +18,9 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: postgres
-  namespace: crypto
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "cryptoledger.labels" . | nindent 4 }}
 spec:
   serviceName: postgres
   replicas: 1
@@ -29,24 +34,24 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: 192.168.122.1:5000/postgres:15.4
+        image: "{{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}"
         ports:
         - containerPort: 5432
         env:
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
-              name: crypto-secrets
+              name: {{ .Values.secrets.name }}
               key: POSTGRES_USER
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: crypto-secrets
+              name: {{ .Values.secrets.name }}
               key: POSTGRES_PASSWORD
         - name: POSTGRES_DB
           value: crypto_ledger
-        - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata
+        resources:
+          {{- toYaml .Values.postgres.resources | nindent 10 }}
         volumeMounts:
         - name: postgres-data
           mountPath: /var/lib/postgresql/data
@@ -54,9 +59,10 @@ spec:
   - metadata:
       name: postgres-data
     spec:
-      storageClassName: longhorn
+      storageClassName: {{ .Values.persistence.postgres.storageClass }}
       accessModes:
-        - ReadWriteOnce
+        - {{ .Values.persistence.postgres.accessMode }}
       resources:
         requests:
-          storage: 3Gi
+          storage: {{ .Values.persistence.postgres.size }}
+{{- end }}

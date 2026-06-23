@@ -1,8 +1,8 @@
 replicaCount: 2
 
 image:
-  repository: 192.168.122.1:5000/crypto:v1.2.0
-  tag: prod
+  repository: 192.168.122.1:5000/crypto
+  tag: v1.2.0
   pullPolicy: Always
 
 service:
@@ -62,10 +62,29 @@ persistence:
     storageClass: "longhorn"
     accessMode: ReadWriteMany
     size: 1Gi
+  postgres:
+    enabled: true
+    storageClass: "longhorn"
+    accessMode: ReadWriteOnce
+    size: 10Gi
 
 secrets:
   external: true
   name: crypto-secrets
 
 postgres:
-  enabled: false  
+  enabled: true
+  image:
+    repository: 192.168.122.1:5000/postgres
+    tag: 15.4
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+serviceAccount:
+  create: false
+  name: ""
