@@ -1,8 +1,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: crypto-collectstatic
-  namespace: crypto
+  name: {{ include "cryptoledger.fullname" . }}-collectstatic
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "-4"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 spec:
   backoffLimit: 3
   template:
@@ -14,6 +18,12 @@ spec:
         command: ["python", "manage.py", "collectstatic", "--noinput"]
         envFrom:
         - configMapRef:
-            name: crypto-config
+            name: {{ include "cryptoledger.fullname" . }}-config
+        {{- if .Values.secrets.external }}
         - secretRef:
-            name: crypto-secrets
+            name: {{ .Values.secrets.name }}
+        {{- else }}
+        - secretRef:
+            name: {{ include "cryptoledger.fullname" . }}-secrets
+        {{- end }}
+        
