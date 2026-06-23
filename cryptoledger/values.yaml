@@ -85,6 +85,6 @@ postgres:
       cpu: 500m
       memory: 512Mi
 
-serviceAccount:
-  create: false
-  name: ""
+# serviceAccount:
+#   create: false
+#   name: ""
