@@ -5,7 +5,7 @@ metadata:
   namespace: crypto
 
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicaCount }}
   minReadySeconds: 10
 
   strategy:
@@ -45,15 +45,15 @@ spec:
 
       containers:
       - name: web
-        image: 192.168.122.1:5000/crypto:v1.2.0
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: Always
         ports:
-        - containerPort: 8000
+        - containerPort: {{ .Values.service.port }}
 
         startupProbe:
           httpGet:
             path: /health/live/
-            port: 8000
+            port: {{ .Values.service.port }}
             httpHeaders:
             - name: Host
               value: crypto.local
@@ -64,7 +64,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /health/ready/
-            port: 8000
+            port: {{ .Values.service.port }}
             httpHeaders:
             - name: Host
               value: crypto.local
@@ -76,7 +76,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /health/live/
-            port: 8000
+            port: {{ .Values.service.port }}
             httpHeaders:
             - name: Host
               value: crypto.local
@@ -105,17 +105,3 @@ spec:
       - name: media
         persistentVolumeClaim:
           claimName: crypto-media-pvc
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: crypto-web
-  namespace: crypto
-spec:
-  selector:
-    app: crypto
-    tier: web
-  ports:
-  - port: 8000
-    targetPort: 8000
-  type: ClusterIP

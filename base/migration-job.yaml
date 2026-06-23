@@ -10,7 +10,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: migrate
-        image: 192.168.122.1:5000/crypto:v1.2.0
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         command: ["python", "manage.py", "migrate"]
         envFrom:
         - configMapRef:
