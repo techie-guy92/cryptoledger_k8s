@@ -12,11 +12,14 @@ spec:
     - Ingress
 
   ingress:
-    - from:
-        - podSelector:
-            matchLabels:
-              app.kubernetes.io/name: {{ include "cryptoledger.name" . }}
-              app.kubernetes.io/instance: {{ .Release.Name }}
-      ports:
-        - protocol: TCP
-          port: 5432
+  - from:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: {{ .Release.Namespace }}
+        podSelector:
+          matchLabels:
+            app.kubernetes.io/name: {{ include "cryptoledger.name" . }}
+            app.kubernetes.io/instance: {{ .Release.Name }}
+    ports:
+      - protocol: TCP
+        port: 5432
