@@ -13,3 +13,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 After applying instal.yaml, apply default-project.yaml too, to create deafult pod (no need to argocd ns since it's been define in manifest):
 kubectl apply -f default-project.yaml
+
+
+To check status of ArgoCD:
+kubectl get applications -n argocd
