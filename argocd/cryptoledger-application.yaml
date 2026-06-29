@@ -9,7 +9,9 @@ spec:
   source:
     repoURL: https://github.com/techie-guy92/cryptoledger_k8s.git
     targetRevision: main
-    path: .
+    path: helm
+    helm:
+      releaseName: crypto
 
   destination:
     server: https://kubernetes.default.svc
@@ -19,4 +21,7 @@ spec:
     automated:
       prune: true
       selfHeal: true
-      
+    syncOptions:
+    - CreateNamespace=true
+
+  revisionHistoryLimit: 5
