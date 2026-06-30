@@ -8,7 +8,7 @@ spec:
 
   source:
     repoURL: https://github.com/techie-guy92/cryptoledger_k8s.git
-    targetRevision: main
+    targetRevision: develop
     path: helm
     helm:
       releaseName: crypto
